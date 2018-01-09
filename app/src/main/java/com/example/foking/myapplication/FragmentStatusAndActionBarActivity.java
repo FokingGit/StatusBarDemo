@@ -21,8 +21,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import butterknife.ButterKnife;
-
 
 public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
     public Toolbar mToolbar;
@@ -49,8 +47,15 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
         mFragments = new ArrayList<>();
         HaveToolBarFragment haveToolBarFragment = new HaveToolBarFragment();
         NoToolBarStatusFragment noToolBarStatusFragment = new NoToolBarStatusFragment();
+        ToolBarStatusDifColorFragment toolBarStatusDifColorFragment = new ToolBarStatusDifColorFragment();
+        OnlyBannerFragment onlyBannerFragment = new OnlyBannerFragment();
+
+
         mFragments.add(haveToolBarFragment);
         mFragments.add(noToolBarStatusFragment);
+        mFragments.add(toolBarStatusDifColorFragment);
+        mFragments.add(onlyBannerFragment);
+
         mSupportFragmentManager = getSupportFragmentManager();
 
 
@@ -65,6 +70,20 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selectFragment(1);
+            }
+        });
+
+        findViewById(R.id.bt_have_toolbar_change_color).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectFragment(2);
+            }
+        });
+
+        findViewById(R.id.bt_only_banner).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectFragment(3);
             }
         });
 
@@ -85,7 +104,7 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
             mStatusBarView.requestLayout();
 
             //获取根布局
-            ViewGroup systemContent = findViewById(android.R.id.content);
+            ViewGroup systemContent = (ViewGroup) findViewById(android.R.id.content);
             ViewGroup userContent = (ViewGroup) systemContent.getChildAt(0);
             userContent.setFitsSystemWindows(false);
             userContent.addView(mStatusBarView, 0);
@@ -135,15 +154,23 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
         protected void configFragmentView(View view) {
             mActivity = ((FragmentStatusAndActionBarActivity) getActivity());
             mActivity.mToolbar.setVisibility(View.VISIBLE);
+            mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_bright));
+            mActivity.mStatusBarView.setVisibility(View.VISIBLE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                mActivity.getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
         }
 
         @Override
         public void onHiddenChanged(boolean hidden) {
             super.onHiddenChanged(hidden);
             mActivity.mToolbar.setVisibility(View.VISIBLE);//设置ToolBar显示
+            mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             //设置statusBar的颜色
             mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_bright));
+            mActivity.mStatusBarView.setVisibility(View.VISIBLE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                mActivity.getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
         }
 
         @Override
@@ -165,7 +192,11 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
         protected void configFragmentView(View view) {
             mActivity = ((FragmentStatusAndActionBarActivity) getActivity());
             mActivity.mToolbar.setVisibility(View.GONE);
+            mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+            mActivity.mStatusBarView.setVisibility(View.VISIBLE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                mActivity.getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
         }
 
         @Override
@@ -173,7 +204,11 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
             super.onHiddenChanged(hidden);
             mActivity.mToolbar.setVisibility(View.GONE);//设置ToolBar消失
             //设置statusBar的颜色
+            mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+            mActivity.mStatusBarView.setVisibility(View.VISIBLE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                mActivity.getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
         }
 
         @Override
@@ -189,5 +224,81 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
 
     }
 
+    public static class ToolBarStatusDifColorFragment extends BaseNoStatusBarFragment {
+        private FragmentStatusAndActionBarActivity mActivity;
+
+
+        @Override
+        protected void configFragmentView(View view) {
+            mActivity = ((FragmentStatusAndActionBarActivity) getActivity());
+            mActivity.mToolbar.setVisibility(View.VISIBLE);
+            mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            mActivity.mStatusBarView.setVisibility(View.VISIBLE);
+            //设置statusBar的颜色
+            mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                mActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
+        @Override
+        public void onHiddenChanged(boolean hidden) {
+            super.onHiddenChanged(hidden);
+            mActivity.mToolbar.setVisibility(View.VISIBLE);//设置ToolBar消失
+            mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            //设置statusBar的颜色
+            mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            mActivity.mStatusBarView.setVisibility(View.VISIBLE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                mActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
+        @Override
+        public int getFragmentView() {
+            return R.layout.fragment_no_have_tool;
+        }
+
+        @Override
+        public String getFragmentTitle() {
+            return "no";
+        }
+
+
+    }
+
+    public static class OnlyBannerFragment extends BaseNoStatusBarFragment {
+        private FragmentStatusAndActionBarActivity mActivity;
+
+
+        @Override
+        protected void configFragmentView(View view) {
+            mActivity = ((FragmentStatusAndActionBarActivity) getActivity());
+            mActivity.mToolbar.setVisibility(View.GONE);
+            //设置statusBar的颜色
+            mActivity.mStatusBarView.setVisibility(View.GONE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                mActivity.getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onHiddenChanged(boolean hidden) {
+            super.onHiddenChanged(hidden);
+            mActivity.mToolbar.setVisibility(View.GONE);
+            //设置statusBar的颜色
+            mActivity.mStatusBarView.setVisibility(View.GONE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                mActivity.getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
+            mActivity.mStatusBarView.setVisibility(View.GONE);
+        }
+
+        @Override
+        public int getFragmentView() {
+            return R.layout.fragment_no_have_tool;
+        }
+
+        @Override
+        public String getFragmentTitle() {
+            return "no";
+        }
+    }
 }
 

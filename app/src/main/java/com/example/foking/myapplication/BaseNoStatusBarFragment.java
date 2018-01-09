@@ -26,7 +26,7 @@ public abstract class BaseNoStatusBarFragment extends Fragment {
 
     @Override
     public void onHiddenChanged(boolean hidden) {
-        Log.i(TAG, getClass().getSimpleName()+"：onHiddenChanged");
+        Log.i(TAG, getClass().getSimpleName() + "：onHiddenChanged");
         if (!hidden && FragmentUtil.judgeGetActivityCanUse(this)) {
             getActivity().setTitle(getFragmentTitle());
         }
@@ -41,81 +41,79 @@ public abstract class BaseNoStatusBarFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.i(TAG, getClass().getSimpleName()+"：onAttach");
+        Log.i(TAG, getClass().getSimpleName() + "：onAttach");
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, getClass().getSimpleName()+"：onCreate");
+        Log.i(TAG, getClass().getSimpleName() + "：onCreate");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG, getClass().getSimpleName()+"：onCreateView");
+        Log.i(TAG, getClass().getSimpleName() + "：onCreateView");
         mView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(getFragmentView(), container, false);
         return mView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG, getClass().getSimpleName()+"：onViewCreated");
-        ButterKnife.bind(this, view);
+        Log.i(TAG, getClass().getSimpleName() + "：onViewCreated");
+        ButterKnife.bind(view);
         configFragmentView(view);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        Log.i(TAG, getClass().getSimpleName()+"：onActivityCreated");
+        Log.i(TAG, getClass().getSimpleName() + "：onActivityCreated");
         getActivity().setTitle(getFragmentTitle());
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
     public void onStart() {
-        Log.i(TAG, getClass().getSimpleName()+"：onStart");
+        Log.i(TAG, getClass().getSimpleName() + "：onStart");
         super.onStart();
     }
 
     @Override
     public void onResume() {
-        Log.i(TAG, getClass().getSimpleName()+"：onResume");
+        Log.i(TAG, getClass().getSimpleName() + "：onResume");
         super.onResume();
     }
 
     @Override
     public void onPause() {
-        Log.i(TAG, getClass().getSimpleName()+"：onPause");
+        Log.i(TAG, getClass().getSimpleName() + "：onPause");
         super.onPause();
     }
 
     @Override
     public void onStop() {
-        Log.i(TAG, getClass().getSimpleName()+"：onStop");
+        Log.i(TAG, getClass().getSimpleName() + "：onStop");
         super.onStop();
     }
 
     @Override
     public void onDestroyView() {
-        Log.i(TAG, getClass().getSimpleName()+"：onDestroyView");
+        Log.i(TAG, getClass().getSimpleName() + "：onDestroyView");
         super.onDestroyView();
     }
 
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, getClass().getSimpleName()+"：onDestroy");
+        Log.i(TAG, getClass().getSimpleName() + "：onDestroy");
         super.onDestroy();
     }
 
     @Override
     public void onDetach() {
-        Log.i(TAG, getClass().getSimpleName()+"：onDetach");
+        Log.i(TAG, getClass().getSimpleName() + "：onDetach");
         super.onDetach();
     }
-
-
 
 
 }

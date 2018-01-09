@@ -24,7 +24,7 @@ public class ToolBarAndStatusBarSameColorActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.status_toolBar_same_color));
         } else {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            ViewGroup systemContent = findViewById(android.R.id.content);
+            ViewGroup systemContent = (ViewGroup) findViewById(android.R.id.content);
 
             View statusBarView = new View(this);
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight());

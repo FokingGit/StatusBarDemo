@@ -18,7 +18,7 @@ public class FullScrrenHaveTextActivity extends AppCompatActivity {
         Window window = getWindow();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            ViewGroup contentView = window.getDecorView().findViewById(Window.ID_ANDROID_CONTENT);
+            ViewGroup contentView = (ViewGroup) window.getDecorView().findViewById(Window.ID_ANDROID_CONTENT);
             contentView.getChildAt(0).setFitsSystemWindows(false);
         }
         /*
