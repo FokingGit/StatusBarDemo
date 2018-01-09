@@ -166,7 +166,6 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
             super.onHiddenChanged(hidden);
             mActivity.mToolbar.setVisibility(View.VISIBLE);//设置ToolBar显示
             mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-            //设置statusBar的颜色
             mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_bright));
             mActivity.mStatusBarView.setVisibility(View.VISIBLE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -203,7 +202,6 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
         public void onHiddenChanged(boolean hidden) {
             super.onHiddenChanged(hidden);
             mActivity.mToolbar.setVisibility(View.GONE);//设置ToolBar消失
-            //设置statusBar的颜色
             mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
             mActivity.mStatusBarView.setVisibility(View.VISIBLE);
@@ -234,7 +232,6 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
             mActivity.mToolbar.setVisibility(View.VISIBLE);
             mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             mActivity.mStatusBarView.setVisibility(View.VISIBLE);
-            //设置statusBar的颜色
             mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                 mActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -243,9 +240,8 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
         @Override
         public void onHiddenChanged(boolean hidden) {
             super.onHiddenChanged(hidden);
-            mActivity.mToolbar.setVisibility(View.VISIBLE);//设置ToolBar消失
+            mActivity.mToolbar.setVisibility(View.VISIBLE);
             mActivity.mToolbar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            //设置statusBar的颜色
             mActivity.mStatusBarView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             mActivity.mStatusBarView.setVisibility(View.VISIBLE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -273,7 +269,6 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
         protected void configFragmentView(View view) {
             mActivity = ((FragmentStatusAndActionBarActivity) getActivity());
             mActivity.mToolbar.setVisibility(View.GONE);
-            //设置statusBar的颜色
             mActivity.mStatusBarView.setVisibility(View.GONE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                 mActivity.getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
@@ -283,7 +278,6 @@ public class FragmentStatusAndActionBarActivity extends AppCompatActivity {
         public void onHiddenChanged(boolean hidden) {
             super.onHiddenChanged(hidden);
             mActivity.mToolbar.setVisibility(View.GONE);
-            //设置statusBar的颜色
             mActivity.mStatusBarView.setVisibility(View.GONE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                 mActivity.getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
